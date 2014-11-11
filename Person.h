@@ -1,18 +1,53 @@
-class Person {
-  public:
-    Person(Film contrubutedTo, String bio, Gender gender, int activeSince);
+class Person{
+public:
+Person(Film contrubutedTo[], string bio, Gender gender, int activeSince);
+Film* getContributedTo();
+void addContributedTo(Film* film);
+string getBio();
+void setBio(string s);
+Gender getGender();
+void setGender(enum Gender);
+int getActiveSince();
+void setActiveSince(int y);
+private:
+Film contributedTo[];
+int numberContributedTo; //Unsure of this?
+string bio;
+Gender gender;
+int activeSince;
+};
+
+/*
+Person::Person(Film contrubutedTo[], string bio, Gender gender, int activeSince){
     
-    Film* getContributedTo();
-    String getBio();
-    Gender getGender();
-    int getActiveSince();
+};
+*/
+void Person::setGender(Gender g){
+    gender = g;
+};
+Gender Person::getGender(){
+    return gender;
+};
 
-  private:
-    Film contributedTo[];
-    String bio;
+void Person::setBio(string s){
+   bio=s;
+};
+string Person::getBio(){
+    return bio;
+};
 
-    enum Gender {Male,Female};
-    Gender gender;
+void Person::setActiveSince(int as){
+   activeSince=as;
+};
+int Person::getActiveSince(){
+    return activeSince;
+};
 
-    int activeSince;
+Film* Person::getContributedTo(){
+    return contributedTo;
+};
+/*
+void Person::addContributedTo(Film* film){
+    contributedTo[numberContributedTo++]=film;
 }
+ * */
