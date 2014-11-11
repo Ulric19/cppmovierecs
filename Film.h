@@ -1,26 +1,53 @@
-class Film {
-  public:
-    Film(String description, Person* w, Person* d, Person* a, String* c, float ratings, float earnings);
+class Person{
+public:
+Person(Film contrubutedTo[], string bio, Gender gender, int activeSince);
+Film* getContributedTo();
+void addContributedTo(Film* film);
+string getBio();
+void setBio(string s);
+Gender getGender();
+void setGender(enum Gender);
+int getActiveSince();
+void setActiveSince(int y);
+private:
+Film contributedTo[];
+int numberContributedTo; //Unsure of this?
+string bio;
+Gender gender;
+int activeSince;
+};
+
+/*
+Person::Person(Film contrubutedTo[], string bio, Gender gender, int activeSince){
     
-    String getDescription();
-    Person* getWriter();
-    Person* getDirector();
-    Person* getProducer();
-    Person* getActors();
-    String getCharacters();
-    float getRating();
-    float getEarnings();
+};
+*/
+void Person::setGender(Gender g){
+    gender = g;
+};
+Gender Person::getGender(){
+    return gender;
+};
 
-  private:
-    MAX_PEOPLE = 10;
-    String description;
-    Person writer[MAX_PEOPLE];
-    Person directors[MAX_PEOPLE];
-    Person producers[MAX_PEOPLE];
-    Person actors[MAX_PEOPLE];
-    String characters[MAX_PEOPLE];
-    float rating;
-    float earnings;
+void Person::setBio(string s){
+   bio=s;
+};
+string Person::getBio(){
+    return bio;
+};
 
-  }
+void Person::setActiveSince(int as){
+   activeSince=as;
+};
+int Person::getActiveSince(){
+    return activeSince;
+};
 
+Film* Person::getContributedTo(){
+    return contributedTo;
+};
+/*
+void Person::addContributedTo(Film* film){
+    contributedTo[numberContributedTo++]=film;
+}
+ * */
