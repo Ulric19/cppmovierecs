@@ -1,19 +1,33 @@
+
+#ifndef PERSON_H
+#define	PERSON_H
+#include "Person.h"
+#endif	/* PERSON_H */
+
+
+#ifndef FILM_H
+#define FILM_H
+#include "Film.h"
+#endif //FILM_H
+
 class Person{
 public:
-    Person(Film contrubutedTo[], std::string bio, Gender gender, int activeSince);
+    Person(std::string bio, sex gender, int activeSince);
     Film* getContributedTo();
     void addContributedTo(Film* film);
     std::string getBio();
     void setBio(std::string s);
-    Gender getGender();
-    void setGender(enum Gender);
+    sex getSex();
+    void setSex(enum sex);
     int getActiveSince();
     void setActiveSince(int y);
 private:
-    Film contributedTo[];
-    int numberContributedTo; //Unsure of this?
+    std::list<Film*> contributedTo;
+    int nContributedTo; //Unsure of this?
     std::string bio;
-    Gender gender;
+    sex ex;
     int activeSince;
 };
+
+
 
