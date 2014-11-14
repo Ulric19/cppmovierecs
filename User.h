@@ -1,3 +1,7 @@
+#ifndef USER_H
+#define	USER_H
+
+
 class User {
 public:
 User( std::string const &uName, std::string const &pw, Film* films, Person* people);
@@ -20,3 +24,6 @@ Person* likedPeople;
 int nLikedFilms;
 int nLikedPeople;
 };
+
+#endif	/* USER_H */
+
