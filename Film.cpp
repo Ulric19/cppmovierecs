@@ -1,3 +1,4 @@
+
 #include "Person.h"
 #include <cstdlib>
 #include <iostream>
@@ -10,7 +11,8 @@ const int MAX_PEOPLE=100;
 
 class Film {
 public:
-Film(string name,string description, Person* w, Person* d, Person* a, Person* p, string* c, float ratings, float earnings) : name(name), description(description), writers(w), directors(d), producers(p), characters(c), earnings(), ratings(ratings)   ;
+    Film(string n,string desc, float ratings, float earned, int year, int month, int day);
+    string getName();    
     string getDescription();
     Person* getWriter();
     Person* getDirector();
@@ -20,7 +22,8 @@ Film(string name,string description, Person* w, Person* d, Person* a, Person* p,
     float getRating();
     float getEarnings();
     int getYearReleased();
-    string getName();
+    int getMonthReleased();
+    int getDayReleased();
     void setName(string name_);
     void setDescription(string desc_);
     void setWriter(Person writer_);
@@ -31,6 +34,8 @@ Film(string name,string description, Person* w, Person* d, Person* a, Person* p,
     void setRating(float);
     void setEarnings(float);
     void setYearReleased(int);
+    void setMonthReleased(int);
+    void setDayReleased(int);
 private:
     string name;
     string description;
@@ -47,14 +52,12 @@ private:
     float rating;
     float earnings;
     int yearReleased;
-    int monthReleased[13]={1,2,3,4,5,6,7,8,9,10,11,12};
+    int monthReleased;
     int dayReleased;
 };
-/*
-Film::Film(string description_, Person* writer_, Person* director_, Person* actor_, string* characters_, float ratings_, float earnings_){
+Film::Film(string n,string desc, float ratings, float earned, int year, int month, int day) : name(n), description(desc), earnings(earned), rating(ratings), yearReleased(year), monthReleased(month), dayReleased(day){
 
 };
-*/
 string Film::getDescription(){
     return description;
 };
