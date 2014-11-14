@@ -1,112 +1,63 @@
-
-#include "Person.h"
+#include "Film.h"
 #include <cstdlib>
 #include <iostream>
 #include <string>
-#include <array>
+#include <vector>
+#include <list>
 
 using namespace std;
 
-const int MAX_PEOPLE=100;
-
-class Film {
+enum sex {Male,Female};
+class Person{
 public:
-    Film(string n,string desc, float ratings, float earned, int year, int month, int day);
-    string getName();    
-    string getDescription();
-    Person* getWriter();
-    Person* getDirector();
-    Person* getProducer();
-    Person* getActors();
-    string getCharacters();
-    float getRating();
-    float getEarnings();
-    int getYearReleased();
-    int getMonthReleased();
-    int getDayReleased();
-    void setName(string name_);
-    void setDescription(string desc_);
-    void setWriter(Person writer_);
-    void setDirector(Person director_);
-    void setProducer(Person producor_);
-    void setActors(Person actor_);
-    void setCharacters(string);
-    void setRating(float);
-    void setEarnings(float);
-    void setYearReleased(int);
-    void setMonthReleased(int);
-    void setDayReleased(int);
+    Person( string bio, sex gender, int activeSince);
+    Film* getContributedTo();
+    void addContributedTo(Film* film);
+    string getBio();
+    void setBio(string s);
+    sex getSex();
+    void setSex(enum sex);
+    int getActiveSince();
+    void setActiveSince(int y);
 private:
-    string name;
-    string description;
-    Person writers[];
-    int nWriters;
-    Person directors[];
-    int nDirectors;
-    Person producers[];
-    int nProducers;
-    Person actors[];
-    int nActors;
-    string characters[];
-    int nCharacters;
-    float rating;
-    float earnings;
-    int yearReleased;
-    int monthReleased;
-    int dayReleased;
-};
-Film::Film(string n,string desc, float ratings, float earned, int year, int month, int day) : name(n), description(desc), earnings(earned), rating(ratings), yearReleased(year), monthReleased(month), dayReleased(day){
-
-};
-string Film::getDescription(){
-    return description;
-};
-void Film::setDescription(string desc_){
-    description=desc_;
+    std::list<Film*> contributedTo;
+    int nContributedTo; //Unsure of this?
+    string bio;
+    sex ex;
+    int activeSince;
 };
 
-Person* Film::getWriter(){
-    return writers;
-};
-void Film::setWriter(Person writer_){
-    writers[nWriters++]=writer_;
+
+Person::Person(string b, sex s, int year) : bio(b),ex(s),activeSince(year){
 };
 
-Person* Film::getDirector(){
-    return directors;
+void Person::setSex(sex g){
+    ex = g;
 };
-void Film::setDirector(Person director_){
-    directors[nDirectors++]=director_;
-};
-
-Person* Film::getProducer(){
-    return producers;
-};
-void Film::setProducer(Person producer_){
-    producers[nProducers++]=producer_;
+sex Person::getSex(){
+    return ex;
 };
 
-Person* Film::getActors(){
-    return actors;
+void Person::setBio(string s){
+   bio=s;
 };
-void Film::setActors(Person actor_){
-    actors[nActors++]=actor_;
+string Person::getBio(){
+    return bio;
 };
 
+void Person::setActiveSince(int as){
+   activeSince=as;
+};
+int Person::getActiveSince(){
+    return activeSince;
+};
+//getHistory may be better. Should return all films the person has been involved with
+Film* Person::getContributedTo(){
+    return contributedTo;
+};
 /*
-string* Film::getCharacters(){};
-void Film::setCharacters(string*){};
-*/
-float Film::getRating(){
-    return rating;
-};
-void Film::setRating(float rating_){
-    rating=rating_;
-};
-
-float Film::getEarnings(){
-    return earnings;
-};
-void Film::setEarnings(float earnings_){
-    earnings=earnings_;
-};
+void Person::contributedTo(Film* film){
+    contributedTo[numberContributedTo++]=film;
+}
+ * */
+//Add film to list
