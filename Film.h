@@ -1,3 +1,7 @@
+
+#ifndef FILM_H
+#define	FILM_H
+
 class Film {
 public:
 Film(std::string description, Person* w, Person* d, Person* a, std::string* c, float ratings, float earnings);
@@ -35,3 +39,7 @@ private:
     float earnings;
     int yearReleased;
 };
+
+
+#endif	/* FILM_H */
+
