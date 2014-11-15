@@ -1,63 +1,105 @@
-#include "Film.h"
+#include "Person.h"
 #include <cstdlib>
 #include <iostream>
 #include <string>
 #include <vector>
-#include <list>
 
 using namespace std;
 
-enum sex {Male,Female};
-class Person{
+const int MAX_PEOPLE=100;
+
+enum type{comedy, tradgedy};
+class Film {
 public:
-    Person( string bio, sex gender, int activeSince);
-    Film* getContributedTo();
-    void addContributedTo(Film* film);
-    string getBio();
-    void setBio(string s);
-    sex getSex();
-    void setSex(enum sex);
-    int getActiveSince();
-    void setActiveSince(int y);
+    Film(string t, Person d, Person actor, Person actress, float rating, int mpaa, int released, type g, int a );
+    string getTitle();
+    void setTitle(string name_);
+    Person getDirector();
+    void setDirector(Person);
+    Person getActor();
+    void setActor(Person actor_);
+    Person getActress();
+    void setActress(Person actress_);
+    int getRating();
+    void setRating(int);
+    int getYearReleased();
+    void setYearReleased(int);
+    int getMPAA();
+    void setMPAA(int);
+    type getGenre();
+    void setGenre(type);
+    int getAwards();
+    void setAwards(int);
+    
 private:
-    std::list<Film*> contributedTo;
-    int nContributedTo; //Unsure of this?
-    string bio;
-    sex ex;
-    int activeSince;
+    string title;
+    Person director;
+    Person actor;
+    Person actress;
+    int rating;
+    int mpaa;
+    int yearReleased;
+    type genre;
+    int awards;
 };
+Film::Film(string t, Person d, Person actor_, Person actress_, float rating, int mpaa, int released, type g, int a ): title(t), director(d), actor(actor_), actress(actress_), rating(rating), mpaa(mpaa), yearReleased(released), genre(g), awards(a){};
 
-
-Person::Person(string b, sex s, int year) : bio(b),ex(s),activeSince(year){
-};
-
-void Person::setSex(sex g){
-    ex = g;
-};
-sex Person::getSex(){
-    return ex;
-};
-
-void Person::setBio(string s){
-   bio=s;
-};
-string Person::getBio(){
-    return bio;
-};
-
-void Person::setActiveSince(int as){
-   activeSince=as;
-};
-int Person::getActiveSince(){
-    return activeSince;
-};
-//getHistory may be better. Should return all films the person has been involved with
-Film* Person::getContributedTo(){
-    return contributedTo;
-};
-/*
-void Person::contributedTo(Film* film){
-    contributedTo[numberContributedTo++]=film;
+string Film::getTitle(){
+    return title;
 }
- * */
-//Add film to list
+void Film::setTitle(string n){
+    title=n;
+}
+
+Person Film::getDirector(){
+    return director;
+};
+void Film::setDirector(Person director_){
+    director=director_;
+};
+
+Person Film::getActor(){
+    return actor;
+};
+void Film::setActor(Person actor_){
+    actor=actor_;
+};
+
+Person Film::getActress(){
+    return actress;
+};
+void Film::setActress(Person actress_){
+    actress=actress_;
+}
+
+int Film::getRating(){
+    return rating;
+};
+void Film::setRating(int rating_){
+    rating=rating_;
+};
+
+int Film::getMPAA(){
+    return mpaa;
+}
+void Film::setMPAA(int m){
+    mpaa=m;
+}
+
+type Film::getGenre(){
+    return genre;
+};
+void Film::setGenre(type g){
+    genre=g;
+};
+
+int Film::getAwards(){
+    return awards;
+};
+void Film::setAwards(int a){
+    awards=a;
+};
+
+
+
+
