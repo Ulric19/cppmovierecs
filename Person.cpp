@@ -1,63 +1,39 @@
-
 #include "Film.h"
-
 #include <cstdlib>
 #include <iostream>
 #include <string>
 #include <vector>
-using namespace std;
 
-enum Gender {Male,Female};
+using namespace std;
 class Person{
 public:
-Person(Film contrubutedTo[], string bio, Gender gender, int activeSince);
-Film* getContributedTo();
-void addContributedTo(Film* film);
-string getBio();
-void setBio(string s);
-Gender getGender();
-void setGender(enum Gender);
-int getActiveSince();
-void setActiveSince(int y);
+    Person(string name,Film contrubutedTo[], int activeSince);
+    Film* getFilms();
+    void addFilm(Film* film);
+    int getActiveSince();
+    void setActiveSince(int y);
 private:
-Film contributedTo[];
-int numberContributedTo; //Unsure of this?
-string bio;
-Gender gender;
-int activeSince;
+    string name;
+    Film contributedTo[];
+    int activeSince;
 };
 
-/*
-Person::Person(Film contrubutedTo[], string bio, Gender gender, int activeSince){
-    
-};
-*/
-void Person::setGender(Gender g){
-    gender = g;
-};
-Gender Person::getGender(){
-    return gender;
+Person::Person(string name,Film contrubutedTo[], int activeSince) : name(name), contributedTo(contributedTo), activeSince(activeSince){
 };
 
-void Person::setBio(string s){
-   bio=s;
-};
-string Person::getBio(){
-    return bio;
-};
-
+//Needs to iterate over all movies associated with a person, and store the lowest value;
 void Person::setActiveSince(int as){
-   activeSince=as;
+    activeSince=as;
 };
 int Person::getActiveSince(){
-    return activeSince;
+return activeSince;
 };
-
 Film* Person::getContributedTo(){
-    return contributedTo;
+return contributedTo;
 };
-/*
-void Person::addContributedTo(Film* film){
-    contributedTo[numberContributedTo++]=film;
-}
- * */
+void Person::addFilm(Film* f){
+    
+};
+Film* Person::getFilms(){
+    
+};
