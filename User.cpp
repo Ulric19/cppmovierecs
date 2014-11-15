@@ -1,3 +1,4 @@
+
 #include <cstdlib>
 #include <iostream>
 #include <string>
@@ -7,7 +8,7 @@
 using namespace std;
 class User{
 public:
-    User( string const &uName, string const &pw, Film* films, Person* people);
+    User( string const &uName, string const &pw, Film* films);
     User( string const &uName, string const &pw);
     User();
     string getUserName();
@@ -15,7 +16,7 @@ public:
     string getPassword();
     void setPassword(string pw);
     Film* getLikedFilms();
-    void addLikedFilm(Film f);
+    void addLikedFilm(Film* f);
 private:
     string username;
     string password;//Plaintext...
@@ -49,6 +50,6 @@ Film* User::getLikedFilms(void){
     return likedFilms;
 };
 //ADT for storage needs to be defined
-void User::addLikedFilm(Film f){
+void User::addLikedFilm(Film* f){
     likedFilms=f;
 };
