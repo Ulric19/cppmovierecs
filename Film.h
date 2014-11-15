@@ -1,7 +1,7 @@
 #ifndef FILM_H
 #define	FILM_H
-#include "Person.h"
-
+#include <string>
+class Person;
 
 enum type{comedy, tradgedy};
 class Film {
@@ -28,9 +28,9 @@ public:
     
 private:
     std::string title;
-    Person director;
-    Person actor;
-    Person actress;
+    Person* director;
+    Person* actor;
+    Person* actress;
     int rating;
     int mpaa;
     int yearReleased;
@@ -40,3 +40,4 @@ private:
 
 
 #endif	/* FILM_H */
+
