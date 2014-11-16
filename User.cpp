@@ -1,36 +1,42 @@
+
 #include <cstdlib>
 #include <iostream>
 #include <string>
+#include <cmath>
+#include <vector>
 #include "Film.h"
 #include "Person.h"
 using namespace std;
 class User{
 public:
-User( string const &uName, string const &pw, Film* films);
 User( string const &uName, string const &pw);
 User();
 string getUserName();
 void setUserName(string uName);
 string getPassword();
 void setPassword(string pw);
-Film* getLikedFilms();
-void addLikedFilm(Film* f);
+vector<Film> getLikedFilms();
+vector<Person> getLikedPeople();
+vector<type> getLikedGenres();
+void addLikedFilm(Film);
 //*void genRecommendations();
-int scoreFilm();
+int scoreFilm(Film);
 private:
 string username;
 string password;//Plaintext...
-Film* likedFilms;
+vector<Film> filmArray;
+vector<type> genreArray;
+vector<Person> personArray;//Needs to be populated from the liked films array
+int nLikedGenres;
 int nLikedFilms;
+int nLikedPeople;
 };
-User::User() : username(""), password(""){
+User::User() : username(""), password(""), nLikedFilms(0){
 cout << "DEFAULT USER CONFIGURATION";
+filmArray.clear();
 };
 User::User( std::string const &uName, std::string const &pw) : username(uName), password(pw){
 cout << "Username: " << username << "\nPassword: " << password;
-};
-User::User( std::string const &uName, std::string const &pw, Film* films) : //
-username(uName), password(pw), likedFilms(films){
 };
 string User::getUserName(void){
 cout<<"\nUsername: "<<username;
@@ -46,18 +52,44 @@ return password;
 void User::setPassword(string pw){
 password=pw;
 };
-Film* User::getLikedFilms(void){
-return likedFilms;
+vector<Film> User::getLikedFilms(void){
+return filmArray;
 };
-//ADT for storage needs to be defined
-void User::addLikedFilm(Film* f){
-likedFilms=f;
+vector<Person> User::getLikedPeople(void){
+return personArray;
 };
-/*Intent behind this method is for each Film to be fed to it, and it in turn 
- produce a score for it depending*/
-int scoreFilm(Film*){
-    
-}
-void genRecommendations(){
-    
-}
+vector<type> User::getLikedGenres(void){
+return genreArray;
+};
+
+//Uses vectors. Automatically adds all important variables to liked arrays for a person
+void User::addLikedFilm(Film f){
+    //add films
+    filmArray.at(nLikedFilms++)=f;
+    //add people
+    personArray.at(nLikedPeople++)=f.getActor();
+    personArray.at(nLikedPeople++)=f.getDirector();
+    personArray.at(nLikedPeople++)=f.getActress();
+    //add genre
+    genreArray.at(nLikedGenres++)=f.getGenre();
+};
+
+int User::scoreFilm(Film f){
+    int total=1;
+    int counter=0;
+    //Not sure why it says the Arrays and nLikedFilms is out of scope
+    while(counter<nLikedFilms){
+        if(f.getDirector().getName()==personArray.at(counter).getName()||f.getActress().getName()==personArray.at(counter).getName()||f.getActor().getName()==personArray.at(++counter).getName()){
+            total+=5;
+        }
+    }
+    counter=0;
+    while(counter<nLikedFilms){     
+        if(f.getGenre()==(genreArray.at(++counter))){
+            total+=10;
+        }
+    }
+    total=(total+pow(f.getRating(), 1.5));
+    total=(pow(total, 1.1*(f.getAwards()+1)));
+    return total;
+};
