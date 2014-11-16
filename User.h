@@ -1,8 +1,5 @@
-
 #ifndef USER_H
 #define	USER_H
-
-
 class User {
 public:
 User( std::string const &uName, std::string const &pw, Film* films, Person* people);
@@ -16,7 +13,8 @@ void addLikedPerson(Person p);
 void addLikedFilm(Film f);
 void setUserName(std::string uName);
 void setPassword(std::string pw);
-
+//*void genRecommendations();
+int scoreFilm();
 private:
 std::string username;
 std::string password;//Plaintext...
@@ -25,6 +23,4 @@ Person* likedPeople;
 int nLikedFilms;
 int nLikedPeople;
 };
-
 #endif	/* USER_H */
-
