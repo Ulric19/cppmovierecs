@@ -90,6 +90,6 @@ int User::scoreFilm(Film f){
         }
     }
     total=(total+pow(f.getRating(), 1.5));
-    total=(pow(total, 1.1*(f.getAwards()+1)));
+    total=(pow(total, 1.6*(f.getAwards()+1)));
     return total;
 };
