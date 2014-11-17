@@ -1,9 +1,5 @@
-    /* 
- * File:   Person.h
- * Author: Karl
- *
- * Created on November 8, 2014, 2:37 PM
- */
+
+
 #ifndef FILM_H
 #define FILM_H
 #include "Film.h"
