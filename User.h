@@ -3,6 +3,7 @@
 #include <vector>
 using namespace std;
 class User{
+
 public:
 User( std::string const &uName, std::string const &pw);
 User();
@@ -10,18 +11,18 @@ std::string getUserName();
 void setUserName(std::string uName);
 std::string getPassword();
 void setPassword(std::string pw);
-std::vector<Film> getLikedFilms();
-std::vector<Person> getLikedPeople();
+std::vector<Film*> getLikedFilms();
+std::vector<Person*> getLikedPeople();
 std::vector<type> getLikedGenres();
-void addLikedFilm(Film* f);
-//*void genRecommendations();
-int scoreFilm();
+void addLikedFilm(Film*);
+int scoreFilm(Film*);
+
 private:
 std::string username;
 std::string password;//Plaintext...
-vector<Film> filmArray;
-vector<type> genreArray;
-vector<Person> personArray;//Needs to be populated from the liked films array
+std::vector<Film*> filmArray;
+std::vector<type> genreArray;
+std::vector<Person*> personArray;//Needs to be populated from the liked films array
 int nLikedGenres;
 int nLikedFilms;
 int nLikedPeople;
