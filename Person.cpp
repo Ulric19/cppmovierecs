@@ -10,17 +10,17 @@ class Person{
     
 public:
 Person();
-Person(string name,vector<Film>, int activeSince);
-void setName(string);
-string getName();
-vector<Film*> getFilms();
+Person(std::string name,std::vector<Film*>, int activeSince);
+void setName(std::string);
+std::string getName();
+std::vector<Film*> getFilms();
 void addFilm(Film *film);
 int getActiveSince();
 void setActiveSince(int y);
 
 private:
-string name;
-vector<Film*> contributedTo;
+std::string name;
+std::vector<Film*> contributedTo;
 int activeSince;
 };
 
@@ -30,7 +30,7 @@ contributedTo.clear();
 contributedTo.reserve(128);
 activeSince=0;
 };
-Person::Person(string name,vector<Film> contrubutedTo, int activeSince) : name(name), contributedTo(contributedTo), activeSince(activeSince){
+Person::Person(string name,vector<Film*> contrubutedTo, int activeSince) : name(name), contributedTo(contributedTo), activeSince(activeSince){
 };
 //Needs to iterate over all movies associated with a person, and store the lowest value;
 void Person::setName(string n){
@@ -56,3 +56,4 @@ void Person::addFilm(Film *f){
 vector<Film*> Person::getFilms(){
     return contributedTo;
 };
+
