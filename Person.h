@@ -1,43 +1,36 @@
+    /* 
+ * File:   Person.h
+ * Author: Karl
+ *
+ * Created on November 8, 2014, 2:37 PM
+ */
 #ifndef FILM_H
-#define	FILM_H
+#define FILM_H
+#include "Film.h"
+#endif 
+#ifndef PERSON_H
+#define	PERSON_H
 #include <string>
-class Person;
-enum type{comedy, horror, action, drama, mystery, science_fiction, music, war, western,undefined};
-enum rating{G, PG, PG_13, R, NC_17, not_specified};
-class Film {
+#include <vector>
+class Film;
+
+class Person{
+    
 public:
-Film();
-Film(std::string t, Person d, Person actor, Person actress, float rating, int mpaa, int released, type g, int a );
-std::string getTitle();
-void setTitle(std::string name_);
-Person getDirector();
-void setDirector(Person);
-Person getActor();
-void setActor(Person actor_);
-void setActor(Person* actor_);
-Person getActress();
-void setActress(Person actress_);
-int getRating();
-void setRating(int);
-int getYearReleased();
-void setYearReleased(int);
-int getMPAA(); 
-void setMPAA(int);
-type getGenre();
-void setGenre(type);
-int getAwards();
-void setAwards(int);
+Person();
+Person(std::string name,std::vector<Film*>, int activeSince);
+void setName(std::string);
+std::string getName();
+std::vector<Film*> getFilms();
+void addFilm(Film *film);
+int getActiveSince();
+void setActiveSince(int y);
+
 private:
-std::string title;
-Person* director;
-Person* actor;
-Person* actress;
-int rating;
-int mpaa;//Should this be enum?
-int yearReleased;//Not particularly pertinant in recommendation process unless patern is detected
-type genre;//Important
-int awards;//Along with ratings, is a good indicator of quality. It would be nice is 
-/*program could determine if a particular user had a preference to highly critically rated
- films, and highly awarded films...*/
+std::string name;
+std::vector<Film*> contributedTo;
+int activeSince;
 };
-#endif	/* FILM_H */
+
+#endif	/* PERSON*/
+
