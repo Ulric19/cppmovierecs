@@ -11,12 +11,12 @@ enum rating{G, PG, PG_13, R, NC_17, not_specified};
 class Person;
 
 class Film {
-
+    
 public:
 Film();
-Film(std::string, Person*, Person*, Person*, float, int, int, type, int);
+Film(std::string, Person*, Person*, Person*, int, int, int, std::string, int);
 std::string getTitle();
-void setTitle(const std::string& name);
+void setTitle(const std::string name);
 Person* getDirector();
 void setDirector(Person*);
 void setDirector(Person);
@@ -32,20 +32,21 @@ int getYearReleased();
 void setYearReleased(int);
 int getMPAA();
 void setMPAA(int);
-type getGenre();
-void setGenre(type);
+std::string getGenre();
+void setGenre(std::string);
 int getAwards();
 void setAwards(int);
-
-private:
-std::string title;
 Person* director;
 Person* actor;
 Person* actress;
+
+private:
+
+std::string title;
 int rating;
 int mpaa;
 int yearReleased;
-type genre;
+std::string genre;
 int awards;
 };
 
