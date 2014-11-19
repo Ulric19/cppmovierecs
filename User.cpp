@@ -18,7 +18,7 @@ std::string getPassword();
 void setPassword(std::string pw);
 std::vector<Film*> getLikedFilms();
 std::vector<Person*> getLikedPeople();
-std::vector<type> getLikedGenres();
+std::vector<std::string> getLikedGenres();
 void addLikedFilm(Film*);
 int scoreFilm(Film*);
 
@@ -26,7 +26,7 @@ private:
 std::string username;
 std::string password;//Plaintext...
 std::vector<Film*> filmArray;
-std::vector<type> genreArray;
+std::vector<std::string> genreArray;
 std::vector<Person*> personArray;//Needs to be populated from the liked films array
 int nLikedGenres;
 int nLikedFilms;
@@ -39,6 +39,8 @@ filmArray.clear();
 personArray.clear();
 genreArray.clear();
 };
+
+//Can the constructor check to make sure an object with these same values doesnt already exit?
 User::User( std::string const &uName, std::string const &pw) : username(uName), password(pw){
 cout << "Username: " << username << "\nPassword: " << password;
 filmArray.clear();
@@ -66,7 +68,7 @@ vector<Person*> User::getLikedPeople(void){
 return personArray;
 };
 
-vector<type> User::getLikedGenres(void){
+vector<std::string> User::getLikedGenres(void){
 return genreArray;
 };
 //Uses vectors. Automatically adds all important variables to liked arrays for a person
@@ -74,9 +76,9 @@ void User::addLikedFilm(Film* f){
 //add films
 filmArray[nLikedFilms++]=f;
 //add people
-personArray[nLikedPeople++]=f->getActor();
-personArray[nLikedPeople++]=f->getDirector();
-personArray[nLikedPeople++]=f->getActress();
+personArray[nLikedPeople++]=f->actor;
+personArray[nLikedPeople++]=f->director;
+personArray[nLikedPeople++]=f->actress;
 //add genre
 genreArray[nLikedGenres++]=f->getGenre();
 };
@@ -89,8 +91,8 @@ while(counter<nLikedFilms){
     }
 }
 counter=0;
-while(counter<nLikedFilms){
-    if(f->getGenre()==(genreArray[++counter]&&f->getGenre()!=undefined)){
+while(counter<nLikedGenres){
+    if(f->getGenre()==(genreArray[++counter])){
         total+=10;
     }
 }
