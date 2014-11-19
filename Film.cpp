@@ -6,7 +6,7 @@
 #include "Person.h"
 
 using namespace std;
-enum type{comedy, horror, action, drama, mystery, science_fiction, music, war, western,undefined};
+//enum type{comedy, horror, action, drama, mystery, science_fiction, music, war, western,undefined};
 enum rating{G, PG, PG_13, R, NC_17, not_specified};
 
 
@@ -14,9 +14,9 @@ class Film {
 
 public:
 Film();
-Film(std::string, Person*, Person*, Person*, float, int, int, type, int);
+Film(std::string, Person*, Person*, Person*, int, int, int, std::string, int);
 std::string getTitle();
-void setTitle(const std::string& name);
+void setTitle(const std::string name);
 Person* getDirector();
 void setDirector(Person*);
 void setDirector(Person);
@@ -32,20 +32,21 @@ int getYearReleased();
 void setYearReleased(int);
 int getMPAA();
 void setMPAA(int);
-type getGenre();
-void setGenre(type);
+std::string getGenre();
+void setGenre(std::string);
 int getAwards();
 void setAwards(int);
-
-private:
-std::string title;
 Person* director;
 Person* actor;
 Person* actress;
+
+private:
+
+std::string title;
 int rating;
 int mpaa;
 int yearReleased;
-type genre;
+std::string genre;
 int awards;
 };
 
@@ -56,16 +57,18 @@ Film::Film(){
     actress=NULL;
     rating=0;
     mpaa=not_specified;
-    genre=undefined;
+    genre="";
     awards=0;
 };
-Film::Film(string t, Person *d, Person *actor_, Person *actress_, float rating, int mpaa, int released, type g, int a ): title(t), director(d), actor(actor_), actress(actress_), rating(rating), mpaa(mpaa), yearReleased(released), genre(g), awards(a){};
+
+Film::Film(std::string t, Person *d, Person *actor_, Person *actress_, int rating, int mpaa, int released, std::string g, int a) : title(t), director(d), actor(actor_), actress(actress_), rating(rating), mpaa(mpaa), yearReleased(released), genre(g), awards(a){
+};
+
 string Film::getTitle(){
     cout<<"\nTitle: "<<title;
     return title;
 }
-void Film::setTitle(const std::string& n){
-
+void Film::setTitle(const std::string n){
 title=n;
 }
 
@@ -121,12 +124,12 @@ void Film::setMPAA(int m){
 mpaa=m;
 };
 
-type Film::getGenre(){
+std::string Film::getGenre(){
         cout<<"\nGenre: "<<genre;
 return genre;
 };
-void Film::setGenre(type g){
-genre=g;
+void Film::setGenre(std::string g){
+    genre=g;
 };
 
 int Film::getAwards(){
