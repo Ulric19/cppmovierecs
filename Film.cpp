@@ -6,7 +6,6 @@
 #include "Person.h"
 
 using namespace std;
-//enum type{comedy, horror, action, drama, mystery, science_fiction, music, war, western,undefined};
 enum rating{G, PG, PG_13, R, NC_17, not_specified};
 
 
@@ -39,6 +38,7 @@ void setAwards(int);
 Person* director;
 Person* actor;
 Person* actress;
+int checkVector(std::vector<Film*>);
 
 private:
 
@@ -65,7 +65,7 @@ Film::Film(std::string t, Person *d, Person *actor_, Person *actress_, int ratin
 };
 
 string Film::getTitle(){
-    cout<<"\nTitle: "<<title;
+    //cout<<"\nTitle: "<<title;
     return title;
 }
 void Film::setTitle(const std::string n){
@@ -73,7 +73,7 @@ title=n;
 }
 
 Person* Film::getDirector(){
-    cout<<"\nDirector: "<<director->getName();
+    //cout<<"\nDirector: "<<director->getName();
     return director;
 };
 void Film::setDirector( Person *director_){
@@ -84,21 +84,21 @@ director=&director_;
 };
 
 Person* Film::getActor(){
-    cout<<"\nLead Actor: "<<actor->getName();
+    //cout<<"\nLead Actor: "<<actor->getName();
     return actor;
 };
 
 void Film::setActor(Person *actor_){
-    cout<<actor_->getName();
+    //cout<<actor_->getName();
     actor=actor_;
 };
 void Film::setActor(Person actor_){
-    cout<<actor_.getName();
+    //cout<<actor_.getName();
     actor=&actor_;
 };
 
 Person* Film::getActress(){
-        cout<<"\nLead Actress: "<<actress->getName();
+        //cout<<"\nLead Actress: "<<actress->getName();
 return actress;
 };
 void Film::setActress(Person *actress_){
@@ -109,15 +109,23 @@ actress=&actress_;
 };
 
 int Film::getRating(){
-        cout<<"\nAverage Review: "<<rating;
-return rating;
+        //cout<<"\nAverage Review: "<<rating;
+    return rating;
 };
 void Film::setRating(int rating_){
-rating=rating_;
+    rating=rating_;
 };
 
+void Film::setYearReleased(int y){
+    yearReleased = y;
+}
+int Film::getYearReleased(){
+    return yearReleased;
+}
+    
+
 int Film::getMPAA(){
-        cout<<"\nRated: "<<mpaa;
+        //cout<<"\nRated: "<<mpaa;
 return mpaa;
 };
 void Film::setMPAA(int m){
@@ -125,7 +133,7 @@ mpaa=m;
 };
 
 std::string Film::getGenre(){
-        cout<<"\nGenre: "<<genre;
+        //cout<<"\nGenre: "<<genre;
 return genre;
 };
 void Film::setGenre(std::string g){
@@ -138,4 +146,16 @@ return awards;
 };
 void Film::setAwards(int a){
 awards=a;
+};
+
+//This needs to also compare year released
+// as well as title, for cases such as 
+// Island of Dr. Moreau or King Kong
+int Film::checkVector(vector<Film*> a){
+    int i=0;
+    while(i<a.size()){
+        if(a[i]->getTitle()==this->getTitle()&&a[i]->getYearReleased()==this->getYearReleased()) return i;
+        i++;
+    }
+    return -1;
 };
