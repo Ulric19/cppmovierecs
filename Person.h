@@ -11,7 +11,7 @@
 class Film;
 
 class Person{
-    
+
 public:
 Person();
 Person(std::string name,std::vector<Film*>, int activeSince);
@@ -21,6 +21,7 @@ std::vector<Film*> getFilms();
 void addFilm(Film *film);
 int getActiveSince();
 void setActiveSince(int y);
+int checkVector(std::vector<Person*> a);
 
 private:
 std::string name;
