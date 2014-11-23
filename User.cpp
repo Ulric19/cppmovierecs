@@ -21,7 +21,7 @@ std::vector<Person*> getLikedPeople();
 std::vector<std::string> getLikedGenres();
 void addLikedFilm(Film*);
 int scoreFilm(Film*);
-
+int checkVector(vector<User*> a);
 private:
 std::string username;
 std::string password;//Plaintext...
@@ -38,6 +38,9 @@ cout << "DEFAULT USER CONFIGURATION";
 filmArray.clear();
 personArray.clear();
 genreArray.clear();
+nLikedGenres=0;
+nLikedPeople=0;
+nLikedFilms=0;
 };
 
 //Can the constructor check to make sure an object with these same values doesnt already exit?
@@ -46,6 +49,9 @@ cout << "Username: " << username << "\nPassword: " << password;
 filmArray.clear();
 personArray.clear();
 genreArray.clear();
+nLikedGenres=0;
+nLikedPeople=0;
+nLikedFilms=0;
 };
 string User::getUserName(void){
 cout<<"\nUsername: "<<username;
@@ -101,3 +107,12 @@ total=(pow(total, 1.6*(f->getAwards()+1)));
 return total;
 };
 
+
+int User::checkVector(vector<User*> a){
+    int i=0;
+    while(i<a.size()){
+        if(a[i]->getUserName()==this->getUserName()) return i;
+        i++;
+    }
+    return -1;
+};
