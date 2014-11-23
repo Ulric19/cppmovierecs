@@ -80,19 +80,61 @@ return genreArray;
 //Uses vectors. Automatically adds all important variables to liked arrays for a person
 void User::addLikedFilm(Film* f){
 //add films
-filmArray[nLikedFilms++]=f;
+    int isThere=-1;
+    isThere=f->checkVector(filmArray);
+        if(isThere==-1){
+            cout<<"\nFilm has not yet been liked by user";
+            filmArray.push_back(f);
+            nLikedFilms++;
+        }
+        else{
+            cout<<"\nFilm already liked by user";
+        }
 //add people
-personArray[nLikedPeople++]=f->actor;
-personArray[nLikedPeople++]=f->director;
-personArray[nLikedPeople++]=f->actress;
+    isThere=f->actor->checkVector(personArray);
+        if(isThere==-1){
+            cout<<"\nNot yet liked by user(Person)";
+            personArray.push_back(f->actor);
+            nLikedPeople++;
+        }
+        else{
+            cout<<"\nPerson already liked by user";
+            
+        }
+    isThere=f->actress->checkVector(personArray);
+        if(isThere==-1){
+            cout<<"\nNot yet liked by user(Person)";
+            personArray.push_back(f->actress);
+            nLikedPeople++;
+        }
+        else{
+            cout<<"\nPerson already liked by user";
+            
+        }
+    isThere=f->director->checkVector(personArray);
+    if(isThere==-1){
+        cout<<"\nNot yet liked by user(Person)";
+        personArray.push_back(f->director);
+        nLikedPeople++;
+    }
+    else{
+            cout<<"\nPerson already liked by user";
+            
+        }
+personArray.push_back(f->director);
+nLikedPeople++;
+personArray.push_back(f->actress);
+nLikedPeople++;
 //add genre
-genreArray[nLikedGenres++]=f->getGenre();
+genreArray.push_back(f->getGenre());
+nLikedGenres++;
 };
+//Not working at the moment...
 int User::scoreFilm(Film* f){
 int total=1;
 int counter=0;
 while(counter<nLikedFilms){
-    if(f->getDirector()->getName()==personArray[counter]->getName()||f->getActress()->getName()==personArray[counter]->getName()||f->getActor()->getName()==personArray[++counter]->getName()){
+    if(f->director->getName()==personArray[counter]->getName()||f->actress->getName()==personArray[counter]->getName()||f->actor->getName()==personArray[++counter]->getName()){
         total+=5;
     }
 }
