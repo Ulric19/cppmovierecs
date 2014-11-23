@@ -142,14 +142,36 @@ main() {
   
         }  
        
-          
+    /*Example of a user liking a few films, and then getting */      
     }
     cout<<"\n"<<allFilms[4]->getTitle();
     
-    //Trouble line//u.addLikedFilm(allFilms[4]);
-    /*
-    u.getLikedFilms();
-*/
+    u.addLikedFilm(allFilms[4]);
+    u.addLikedFilm(allFilms[12]);
+    u.addLikedFilm(allFilms[55]);
+    vector<Film*> userLikedFilms=u.getLikedFilms();
+    int i=0;
+    cout<<"The User likes the following films...";
+    while(i<userLikedFilms.size()){
+        cout<<"\n"<<i;
+        cout<<"\n"<<userLikedFilms[i]->getTitle();
+        i++;
+    }
+    //Check for genres which have been liked
+    i=0;
+    cout<<"\nGenres:";
+    while(i<userLikedFilms.size()){
+        cout<<"\n"<<i;
+        cout<<"\n"<<userLikedFilms[i]->getGenre();
+        i++;
+    }
+    //Currently, scoreFilm works with 1 Film reference at a time...
+    //?It would be better if it took a vector, and gave back the top ten Films...
+    cout<<"\nRECOMENDATIONS";
+    cout<<"\n"<<allFilms[5]->getTitle();
+    cout<<"\n"<<"Has a score of:";
+    //Killing process at the moment. Debuging... 
+    cout<<u.scoreFilm(allFilms[5]);
 }
 
 
