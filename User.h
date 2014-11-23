@@ -16,7 +16,7 @@ std::vector<Person*> getLikedPeople();
 std::vector<std::string> getLikedGenres();
 void addLikedFilm(Film*);
 int scoreFilm(Film*);
-
+int checkVector(std::vector<User*> a);
 private:
 std::string username;
 std::string password;//Plaintext...
