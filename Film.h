@@ -5,8 +5,6 @@
 #include <string>
 #include <vector>
 using namespace std;
-const int MAX_PEOPLE=100;
-enum type{comedy, horror, action, drama, mystery, science_fiction, music, war, western,undefined};
 enum rating{G, PG, PG_13, R, NC_17, not_specified};
 class Person;
 
@@ -39,7 +37,8 @@ void setAwards(int);
 Person* director;
 Person* actor;
 Person* actress;
-
+friend bool operator==(Film & lhs, Film & rhs);
+int checkVector(std::vector<Film*> a);
 private:
 
 std::string title;
@@ -49,5 +48,4 @@ int yearReleased;
 std::string genre;
 int awards;
 };
-
 #endif	/* FILM_H */
