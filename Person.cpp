@@ -17,6 +17,7 @@ std::vector<Film*> getFilms();
 void addFilm(Film *film);
 int getActiveSince();
 void setActiveSince(int y);
+int checkVector(vector<Person*> a);
 
 private:
 std::string name;
@@ -37,7 +38,7 @@ void Person::setName(string n){
     name=n;
 }
 string Person::getName(){
-    cout<<"\nName: "<<name;
+    //cout<<"\nName: "<<name;
     return name;
 };
 void Person::setActiveSince(int as){
@@ -57,3 +58,11 @@ vector<Film*> Person::getFilms(){
     return contributedTo;
 };
 
+int Person::checkVector(vector<Person*> a){
+    int i=0;
+    while(i<a.size()){
+        if(a[i]->getName()==this->getName()) return i;
+        i++;
+    }
+    return -1;
+};
