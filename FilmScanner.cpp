@@ -60,7 +60,7 @@ main() {
     //0==year, 1==length(discard), 2==title, 3==genre, 4==actor(lastName), 5==actor(firstName)
     //6==actress(lastName), 7==actress(firstName), 8,9==director last/first, 
     //10==Poplarity(criticalScore), 11==#awards, 12==picture(discard)
-    cout<<data.size();
+   
     for(int i=0; i<data.size(); i++){
     vector<string> currentRow = data[i];
 
@@ -74,73 +74,73 @@ main() {
         int isThere;
         y->setTitle(currentRow[2]);
         y->setGenre(currentRow[3]);
-        
+        int rating;
+        stringstream(currentRow[10]) >>rating;
+        y->setRating(rating);
         string actorName=currentRow[5];
         actorName.append(" "+currentRow[4]);
-        cout<<"\nActor: "<<actorName;
+        //cout<<"\nActor: "<<actorName;
         Person *act= new Person();
         act->setName(actorName);
         //Redundancy Check: 
         isThere=act->checkVector(allPersons);
         if(isThere==-1){
-            cout<<"\nNot yet contained in vector(Person)";
+            //cout<<"\nNot yet contained in vector(Person)";
             allPersons.push_back(act);
         }
         else{
-            cout<<"\nAlready contained in vector(Person)";
+            //cout<<"\nAlready contained in vector(Person)";
             
         }
         //Now check to verify that an Person doesn't already exist wit
         //TODO: Check for redundancy:
         string actressName=currentRow[7];
         actressName.append(" "+currentRow[6]);
-        cout<<"\nActress: "<<actressName;
+        //cout<<"\nActress: "<<actressName;
         Person *actress= new Person();
         actress->setName(actressName);
         //Redundancy Check: For people, should just check names
         isThere=actress->checkVector(allPersons);
         if(isThere==-1){
-            cout<<"\nNot yet contained in vector(Person)";
+            //cout<<"\nNot yet contained in vector(Person)";
             allPersons.push_back(actress);
         }
         else{
-            cout<<"\nAlready contained in vector(Person)";
+            //cout<<"\nAlready contained in vector(Person)";
             
         }  
         string directorName=currentRow[9];
         directorName.append(" "+currentRow[8]);
-        cout<<"\nDirector: "<<directorName;
+        //cout<<"\nDirector: "<<directorName;
         Person *dir= new Person();
         dir->setName(directorName);
         //Redundancy Check: 
         isThere=dir->checkVector(allPersons);
         if(isThere==-1){
-            cout<<"\nNot yet contained in vector(Person)";
+            //cout<<"\nNot yet contained in vector(Person)";
             allPersons.push_back(dir);
         }
         else{
-            cout<<"\nAlready contained in vector(Person)";
+            //cout<<"\nAlready contained in vector(Person)";
             
         }
         //Redundancy Check: Film
         y->setActor(act);
         y->setActress(actress);
         y->setDirector(dir);
-        cout<<"\n"<<y->getTitle();
+        //cout<<"\n"<<y->getTitle();
         isThere=y->checkVector(allFilms);
         if(isThere==-1){
-            cout<<"\nNot yet contained in vector(Film)";
+            //cout<<"\nNot yet contained in vector(Film)";
             allFilms.push_back(y);
         }
         else{
-            cout<<"\nAlready contained in vector(Film)";
-  
+            //cout<<"\nAlready contained in vector(Film)";
         }  
        
     /*Example of a user liking a few films, and then getting */      
     }
-    cout<<"\n"<<allFilms[4]->getTitle();
-    
+    cout<<"The number of all films in the database is: "<<allFilms.size();
     u.addLikedFilm(allFilms[4]);
     u.addLikedFilm(allFilms[12]);
     u.addLikedFilm(allFilms[55]);
@@ -149,24 +149,30 @@ main() {
     cout<<"The User likes the following films...";
     while(i<userLikedFilms.size()){
         cout<<"\n"<<i;
-        cout<<"\n"<<userLikedFilms[i]->getTitle();
-        i++;
+        cout<<"\n"<<userLikedFilms[i++]->getTitle();
     }
     //Check for genres which have been liked
     i=0;
     cout<<"\nGenres:";
-    while(i<userLikedFilms.size()){
+    vector<std::string> genres = u.getLikedGenres();
+    while(i<genres.size()){
         cout<<"\n"<<i;
-        cout<<"\n"<<userLikedFilms[i]->getGenre();
-        i++;
+        cout<<"\n"<<genres[i++];
     }
     //Currently, scoreFilm works with 1 Film reference at a time...
     //?It would be better if it took a vector, and gave back the top ten Films...
     cout<<"\nRECOMENDATIONS";
-    cout<<"\n"<<allFilms[5]->getTitle();
-    cout<<"\n"<<"Has a score of:";
-    //Killing process at the moment. Debuging... 
-    cout<<u.scoreFilm(allFilms[5]);
+    vector<Film*> rankedFilms;
+    rankedFilms=u.sortFilms(allFilms);
+    cout<<"Size of new array is: "<<rankedFilms.size();
+    int k=0;
+    //Output Title, and user's score for a film, top ten films
+    while(k<10){
+        cout<<"\nTitle: "<<rankedFilms[k]->getTitle()<<"\tScore: "<<u.scoreFilm(rankedFilms[k]);
+        k++;
+    }
+    
+    return 0;
 }
 
 
