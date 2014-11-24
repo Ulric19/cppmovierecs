@@ -61,7 +61,9 @@ vector<Film*> Person::getFilms(){
 int Person::checkVector(vector<Person*> a){
     int i=0;
     while(i<a.size()){
-        if(a[i]->getName()==this->getName()) return i;
+        if(a[i]->getName()==this->getName()){
+            return i;
+        }
         i++;
     }
     return -1;
