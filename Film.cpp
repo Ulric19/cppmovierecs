@@ -141,7 +141,7 @@ void Film::setGenre(std::string g){
 };
 
 int Film::getAwards(){
-        cout<<"\nNumber of Awards: "<<awards;
+        //cout<<"\nNumber of Awards: "<<awards;
 return awards;
 };
 void Film::setAwards(int a){
@@ -154,7 +154,9 @@ awards=a;
 int Film::checkVector(vector<Film*> a){
     int i=0;
     while(i<a.size()){
-        if(a[i]->getTitle()==this->getTitle()&&a[i]->getYearReleased()==this->getYearReleased()) return i;
+        if(a[i]->getTitle()==this->getTitle()&&a[i]->getYearReleased()==this->getYearReleased()){
+            return i;
+        }
         i++;
     }
     return -1;
