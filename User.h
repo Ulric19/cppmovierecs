@@ -15,8 +15,10 @@ std::vector<Film*> getLikedFilms();
 std::vector<Person*> getLikedPeople();
 std::vector<std::string> getLikedGenres();
 void addLikedFilm(Film*);
-int scoreFilm(Film*);
+float scoreFilm(Film*);
 int checkVector(std::vector<User*> a);
+vector<Film*> sortFilms(vector<Film*> f);
+
 private:
 std::string username;
 std::string password;//Plaintext...
@@ -26,5 +28,6 @@ std::vector<Person*> personArray;//Needs to be populated from the liked films ar
 int nLikedGenres;
 int nLikedFilms;
 int nLikedPeople;
+int checkLikedGenre(std::string );
 };
 #endif	/* USER_H */
