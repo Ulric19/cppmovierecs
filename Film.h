@@ -1,15 +1,17 @@
-
-
-#ifndef FILM_H
-#define	FILM_H
 #include <string>
 #include <vector>
+#ifndef PERSON_H
+#define	PERSON_H
+#include "Person.h"
+#endif
+#ifndef FILM_H
+#define	FILM_H
+
 using namespace std;
 enum rating{G, PG, PG_13, R, NC_17, not_specified};
 class Person;
 
 class Film {
-    
 public:
 Film();
 Film(std::string, Person*, Person*, Person*, int, int, int, std::string, int);
@@ -48,4 +50,5 @@ int yearReleased;
 std::string genre;
 int awards;
 };
+
 #endif	/* FILM_H */
