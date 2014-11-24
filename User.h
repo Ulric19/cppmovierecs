@@ -1,6 +1,7 @@
+#include <vector>
 #ifndef USER_H
 #define	USER_H
-#include <vector>
+
 using namespace std;
 class User{
 
@@ -16,7 +17,7 @@ std::vector<Person*> getLikedPeople();
 std::vector<std::string> getLikedGenres();
 void addLikedFilm(Film*);
 float scoreFilm(Film*);
-int checkVector(std::vector<User*> a);
+int checkVector(vector<User*> a);
 vector<Film*> sortFilms(vector<Film*> f);
 
 private:
@@ -25,9 +26,11 @@ std::string password;//Plaintext...
 std::vector<Film*> filmArray;
 std::vector<std::string> genreArray;
 std::vector<Person*> personArray;//Needs to be populated from the liked films array
+int checkLikedGenre(std::string a);
 int nLikedGenres;
 int nLikedFilms;
 int nLikedPeople;
-int checkLikedGenre(std::string );
+
 };
+
 #endif	/* USER_H */
